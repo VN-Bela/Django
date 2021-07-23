@@ -1,14 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import *
 # Create your views here.
 
 def home(request):
-    return render(request,'Account/dashboard.html')
+    # Create Object
+    customers =Customer.objects.all()
+    orders=Order.objects.all()
+    content={'customers':customers,'orders':orders}
+    return render(request,'Account/dashboard.html',content)
 
 # product page
 def product(request):
     #eturn HttpResponse("Product Page")
-    return render(request,'Account/product.html')
+    # Create Object
+    products=Product.objects.all()
+    return render(request,'Account/product.html',{'products':products})
 # Customer Profile Page
 
 def customer(request):
